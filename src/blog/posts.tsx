@@ -1,235 +1,441 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 export interface BlogPost {
   id: string;
   title: string;
-  date: string;
-  imageUrl: string;
-  summary: string;
   author: string;
+  date: string;
+  summary: string;
+  imageUrl: string;
   content: React.ReactNode;
 }
 
+const pClass = "mb-6";
+const h2Class = "text-3xl font-bold font-heading text-brand-cyan mb-4 mt-10";
+const h3Class = "text-xl font-bold font-heading text-brand-light mb-3 mt-8";
+const ulClass = "list-disc list-outside ml-6 space-y-3 mb-6";
+const strongClass = "text-brand-light font-semibold";
+const linkClass = "text-brand-cyan hover:underline font-semibold";
+
 export const blogPosts: BlogPost[] = [
   {
-    id: '1',
-    title: 'The Future of AI in Travel: How TravelIQ is Revolutionizing Agent Support',
-    date: 'November 8, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2070&auto=format&fit=crop',
-    summary: 'Discover how artificial intelligence is transforming the travel industry and empowering agents with instant access to supplier information.',
-    author: 'Sarah Mitchell',
+    id: 'secret-ai-playbook',
+    title: 'The Secret AI Playbook: 3 Advanced Workflows 99% of People Don\'t Know',
+    author: 'The TravelIQ Team',
+    date: 'November 10, 2025',
+    summary: 'You\'re using ChatGPT to write emails. Your neighbour is building an entire course with a single prompt. Stop just asking questions—it\'s time to build a multi-tool AI system that works while you don\'t. Discover three severely underutilized AI workflows that will transform your productivity.',
+    imageUrl: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     content: (
       <>
-        <p>
-          The travel industry is undergoing a massive transformation, and artificial intelligence is at the forefront of this change. 
-          For decades, travel agents have relied on fragmented systems, endless phone calls, and scattered documentation to serve their clients. 
-          TravelIQ is changing that paradigm entirely.
+        <p className={pClass}>
+          You\'ve used AI. I know you have.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">The Challenge</h2>
-        <p>
-          Travel agents today face an overwhelming amount of information. Airlines update policies daily, hotels modify their offerings, 
-          and tour operators launch new experiences constantly. Keeping up with all these changes while delivering exceptional service 
-          to clients has become nearly impossible using traditional methods.
+        <p className={pClass}>
+          You\'ve probably asked a tool like ChatGPT to answer a quick question, summarize a dense topic, or maybe even draft a difficult email. And look, those are useful tasks. They save you time and brainpower.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">The AI Solution</h2>
-        <p>
-          TravelIQ's AI-powered platform serves as a centralized intelligence hub for the travel trade. Our virtual assistant, Vee, 
-          provides instant, accurate answers to questions about suppliers, policies, and offerings. No more waiting on hold or 
-          searching through outdated PDFs.
+        <p className={pClass}>
+          But here\'s the brutal truth: You\'re only scratching the surface.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Real Impact</h2>
-        <p>
-          Early adopters of TravelIQ have reported 40% faster response times to client inquiries and a 60% reduction in time spent 
-          researching supplier information. This efficiency translates directly to better service and increased bookings.
+        <p className={pClass}>
+          If you\'re still treating AI like a glorified search engine or a single-task assistant, you\'re missing out on a fundamental shift. The real power—the kind that fundamentally changes how you learn, create, and earn—comes from combining different AI tools into a single, seamless, multi-step system.
         </p>
-        <p>
-          The future of travel is intelligent, connected, and agent-empowered. Welcome to TravelIQ.
+        <p className={pClass}>
+          Think of it like this: Most people use a single screwdriver. We\'re about to build a workshop.
+        </p>
+        <p className={pClass}>
+          This article pulls back the curtain on three severely underutilized AI workflows that will transform your productivity. We\'re moving beyond simple Q&A to show you how to command AI to perform complex, multi-tool projects.
+        </p>
+
+        <h2 className={h2Class}>1. 🎓 The Personal Professor: Build Your Own AI Tutor for Any Subject Imaginable</h2>
+        <p className={pClass}>
+          Ever wanted to learn a new, complex skill like Python or deep-sea welding, but dread slogging through textbook after dense textbook?
+        </p>
+        <p className={pClass}>
+          The game has changed. This workflow moves beyond text-based learning entirely and creates a dynamic, custom video lecture for you in minutes, complete with slides and a voiceover. It\'s like hiring a private tutor who works for free and knows everything on the internet.
+        </p>
+
+        <h3 className={h3Class}>The Story of the Workflow</h3>
+        <p className={pClass}>
+          I call this the "Learn Anything Fast" protocol. It connects a cutting-edge research tool (Perplexity) with Google\'s powerhouse AI learning tool (NotebookLM).
+        </p>
+
+        <h3 className={h3Class}>Step 1: The Scavenger Hunt (Gather Your Sources with Perplexity)</h3>
+        <p className={pClass}>
+          The first problem with learning something new is knowing where to start. Google gives you a million links; Perplexity gives you the gold.
+        </p>
+        <p className={pClass}>
+          Here\'s the trick: You don\'t ask it to teach you. You ask it to find the best teachers.
+        </p>
+        <p className={pClass}>
+          <strong className={strongClass}>My Prompt:</strong> "I want to learn Python for data science. Please give me the top 20 to 50 high-authority resources that you can find online that teach this. Give me the URLs only."
+        </p>
+        <p className={pClass}>
+          A research-focused AI like Perplexity will quickly compile a list of highly-relevant, high-authority websites. This is the most crucial step—it creates the knowledge foundation for your AI Professor. Copy that list of URLs.
+        </p>
+
+        <h3 className={h3Class}>Step 2: The Crash Course (Train Your AI with Notebook LM)</h3>
+        <p className={pClass}>
+          Now, head to Google\'s fantastic, and severely underutilized, NotebookLM.
+        </p>
+        <ul className={ulClass}>
+            <li>Create a new notebook.</li>
+            <li>Paste your list of 20–50 URLs into the source uploader.</li>
+            <li>In mere seconds, NotebookLM will "read," analyze, and synthesize the material from dozens of high-quality websites. What would take a human 20 hours is done in 20 seconds. This is where your AI Professor gets its Ph.D.</li>
+        </ul>
+
+        <h3 className={h3Class}>Step 3: The Lecture Hall (Generate a Custom Video Lecture)</h3>
+        <p className={pClass}>
+          With the material learned, the magic happens.
+        </p>
+        <ul className={ulClass}>
+            <li>Navigate to the NotebookLM "video overview" feature.</li>
+            <li>Click "generate."</li>
+            <li>Within minutes, NotebookLM outputs a complete, ready-to-watch video lecture with synchronized slides and an AI-generated voiceover, all based on the specific, high-quality information you fed it.</li>
+        </ul>
+        <p className={pClass}>
+          <strong className={strongClass}>The Astonishing Result:</strong> You now have a personalized, multi-sensory educational experience on a complex topic, all created while you were making coffee. If you want to dive deeper, you can even use an AI like Gemini to outline a complete curriculum of subsequent sub-topics for you to follow.
+        </p>
+
+        <h2 className={h2Class}>2. 🎨 The Design Assistant: Transform Raw Research into Boardroom-Ready Visuals</h2>
+        <p className={pClass}>
+          You\'ve done the research. You have the killer report. Now comes the soul-crushing part: making it look professional.
+        </p>
+        <p className={pClass}>
+          We\'re talking about turning dense, text-based research into polished, professional-looking websites or infographics—no design skills, late nights, or expensive software required. This workflow is all about the "wow factor" at your next meeting.
+        </p>
+
+        <h3 className={h3Class}>The Story of the Workflow</h3>
+        <p className={pClass}>
+          This one leverages Perplexity\'s deep research capabilities and Google Gemini\'s ability to seamlessly integrate with Canvas (Google\'s web design and visualization tool).
+        </p>
+
+        <h3 className={h3Class}>Step 1: The Deep Dive (Generate a Detailed Report with Perplexity)</h3>
+        <p className={pClass}>
+          Our journey starts back with deep research. If you\'re doing a business analysis, there\'s a Pro-Tip you can\'t miss: click the globe icon and activate Perplexity\'s specialized "finance" tab (yes, it\'s available on the free plan).
+        </p>
+        <p className={pClass}>
+          Then, prompt for the detailed report you need:
+        </p>
+        <p className={pClass}>
+          <strong className={strongClass}>My Prompt:</strong> "Analyze the SEC filings of Starbucks (SBUX). Specifically analyze its financial health, growth and profitability, risks, competitive position, management discussion, evaluation metrics, red flags, and an investment verdict."
+        </p>
+        <p className={pClass}>
+          In minutes, you have a comprehensive, cited, text-based report—dense, but authoritative.
+        </p>
+
+        <h3 className={h3Class}>Step 2: The Hand-Off (Bring the Report into Google Canvas)</h3>
+        <p className={pClass}>
+          Copy the entire text report. Now, open Google Gemini.
+        </p>
+        <ul className={ulClass}>
+            <li>In Gemini\'s "tools" menu, ensure Canvas is enabled.</li>
+            <li>Paste your massive report into the Gemini prompt window.</li>
+            <li>Then, give the command: "Create a professional, public-facing infographic based on this report."</li>
+        </ul>
+
+        <h3 className={h3Class}>Step 3: The Presentation (Create Your Visual Asset)</h3>
+        <p className={pClass}>
+          Gemini processes the text and opens the Canvas interface. From there, click the "create" button. You can choose to transform that text into one of two jaw-dropping assets:
+        </p>
+        <ul className={ulClass}>
+            <li>A fully-designed, polished webpage (in about 90 seconds).</li>
+            <li>A detailed infographic complete with charts and data visualizations (in under a minute).</li>
+        </ul>
+        <p className={pClass}>
+          <strong className={strongClass}>The Astonishing Result:</strong> You\'ve skipped 80% of the graphic design process. You have just taken raw data and transformed it into a stunning, compelling communication tool that screams effort and expertise. Imagine walking into a board meeting with that—it looks like you put in a whole weekend, but you only spent a few seconds.
+        </p>
+
+        <h2 className={h2Class}>3. 🧠 The True Specialist: Stop \'Role-Playing\' and Build a Grounded Expert</h2>
+        <p className={pClass}>
+          How often have you started a chat with an AI by saying, "Act as a world-renowned expert in X…"?
+        </p>
+        <p className={pClass}>
+          It\'s a start, but it creates a temporary persona. As soon as you open a new chat, the "expert" forgets everything. This is where most people hit the ceiling of AI interaction.
+        </p>
+        <p className={pClass}>
+          The most advanced technique is to equip a dedicated AI instance with a deep, persistent body of knowledge, creating a true specialist you can consult repeatedly.
+        </p>
+
+        <h3 className={h3Class}>The Story of the Workflow</h3>
+        <p className={pClass}>
+          We\'re moving the AI from "temporary role-play" to "permanent project-based knowledge." This grounds the AI in a specific, high-quality knowledge base you control.
+        </p>
+
+        <h3 className={h3Class}>Step 1: The Knowledge Dump (Command AI to Perform Deep Research)</h3>
+        <p className={pClass}>
+          We need to create the knowledge base first. Use ChatGPT or a similar tool to generate a comprehensive, specialized report.
+        </p>
+        <p className={pClass}>
+          <strong className={strongClass}>My Prompt:</strong> "Do comprehensive research on the most compelling copywriting techniques that get people to buy, diving deep into the psychology of scarcity, authority, and social proof. Create a detailed, multi-page report."
+        </p>
+        <p className={pClass}>
+          The AI will generate a substantial document—let\'s say, an 18-page report of pure, specialized gold—in about ten minutes.
+        </p>
+
+        <h3 className={h3Class}>Step 2: The Training Manual (Save the Research as a PDF)</h3>
+        <p className={pClass}>
+          This is the secret sauce: You need to make this knowledge permanent.
+        </p>
+        <ul className={ulClass}>
+            <li>Copy the complete research output.</li>
+            <li>Paste it into a document and save it as a PDF file.</li>
+            <li>This PDF is now your expert\'s curated, foundational knowledge base.</li>
+        </ul>
+
+        <h3 className={h3Class}>Step 3: The Installation (Create a Grounded "Project")</h3>
+        <p className={pClass}>
+          Inside your AI platform (like ChatGPT\'s newer Project features or similar dedicated knowledge sections in other tools):
+        </p>
+        <ul className={ulClass}>
+            <li>Navigate to the "Project" section and create a new project (e.g., "My Copywriting Expert").</li>
+            <li>Upload the research PDF you just created into this dedicated project.</li>
+        </ul>
+        <p className={pClass}>
+          <strong className={strongClass}>The Astonishing Result:</strong> Every future conversation within that "My Copywriting Expert" project is now informed by that specific, deep knowledge base. You haven\'t given the AI a temporary role; you have given it persistent, consistent expertise.
+        </p>
+        <p className={pClass}>
+          This also acts as an organizational tool, allowing you to keep different "AI Experts" separate and focused, leading to far more insightful and context-aware responses than a simple one-off prompt ever could.
+        </p>
+
+        <h2 className={h2Class}>The Next Level of Productivity</h2>
+        <p className={pClass}>
+          These three workflows demonstrate a crucial evolution in how we interact with technology. By moving beyond single commands and architecting multi-step processes—by creating AI Agents instead of just using an AI Assistant—you gain the ability to produce complex outputs that were once time-consuming and difficult.
+        </p>
+        <p className={pClass}>
+          You\'re no longer just asking a question; you\'re building a system.
+        </p>
+        <p className={pClass}>
+          Now that you know how to build a personal lecturer, a design assistant, and a deep expert, what\'s the first complex problem you\'ll solve?
         </p>
       </>
-    ),
+    )
   },
   {
-    id: '2',
-    title: '5 Ways AI is Enhancing the Travel Agent Experience',
+    id: 'the-new-marketing-channel',
+    title: 'Stop Shouting into the Void: Why Your Best Marketing Channel is a Conversation',
+    author: 'The TravelIQ Team',
     date: 'November 5, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1556388158-158ea5ccacbd?q=80&w=2070&auto=format&fit=crop',
-    summary: 'Explore the top five ways artificial intelligence is making travel agents more efficient and effective in 2025.',
-    author: 'James Rodriguez',
+    summary: 'Email campaigns, banner ads, social media—the battle for agent attention is relentless. But what if the most powerful marketing strategy wasn\'t about shouting louder, but about being available to listen and answer? Discover why an AI Sales Assistant is the ultimate marketing channel.',
+    imageUrl: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     content: (
-      <>
-        <p>
-          As AI continues to evolve, travel agents are discovering new ways to leverage this technology to enhance their services. 
-          Here are the top five ways AI is transforming the agent experience in 2025.
+       <>
+        <p className={pClass}>
+          How much of your marketing budget is spent trying to get the attention of travel agents? Between email blasts with dwindling open rates, banner ads on trade sites, and sponsored social media posts, suppliers are shouting into an increasingly noisy void. The core problem is that these methods are based on <strong className={strongClass}>interruption.</strong> You\'re trying to catch an agent\'s eye while they\'re trying to do something else.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">1. Instant Information Access</h2>
-        <p>
-          Gone are the days of searching through multiple websites or waiting for supplier callbacks. AI-powered platforms provide 
-          instant access to comprehensive supplier databases, allowing agents to answer client questions in real-time.
+        <p className={pClass}>
+          But what if your marketing wasn\'t an interruption at all? What if it was a utility? A service so valuable that agents sought <em className="text-brand-light/90">you</em> out at their precise moment of need? This is the fundamental shift in thinking that turns a support tool into your most powerful marketing and advertising channel.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">2. 24/7 Support</h2>
-        <p>
-          AI assistants like Vee never sleep. Whether it's 3 AM or 3 PM, agents can get immediate answers to their questions, 
-          ensuring they never miss an opportunity to serve their clients.
+
+        <h2 className={h2Class}>Marketing as a Service, Not an Ad</h2>
+        <p className={pClass}>
+          Traditional advertising is a one-way street. You push a message and hope it sticks. An AI Sales Assistant on the TravelIQ platform flips this model on its head. It\'s a form of <strong className={strongClass}>utility marketing.</strong> You are providing a critical service—instant, 24/7 access to verified information—that makes an agent\'s job easier.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">3. Personalized Recommendations</h2>
-        <p>
-          Advanced AI algorithms analyze client preferences and booking history to suggest tailored travel options, making it easier 
-          for agents to provide personalized service at scale.
+        <p className={pClass}>
+          This creates a powerful new marketing funnel:
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">4. Administrative Automation</h2>
-        <p>
-          AI handles routine tasks like lead management, email responses, and booking confirmations, freeing agents to focus on 
-          building relationships and closing sales.
+        <ul className={ulClass}>
+            <li><strong className={strongClass}>Constant Brand Presence:</strong> Unlike an ad that disappears, your AI assistant provides a permanent, always-on brand presence. You\'re available whenever an agent is working, making you a reliable and ever-present partner.</li>
+            <li><strong className={strongClass}>Contextual Engagement:</strong> You\'re not reaching agents when they\'re scrolling through social media; you\'re engaging them when they are actively researching and selling your product. This is the holy grail of marketing—reaching the right person, with the right information, at the exact right time.</li>
+            <li><strong className={strongClass}>Perfect Message Delivery:</strong> Your AI delivers your brand\'s value proposition and key selling points with 100% accuracy and consistency, every single time. It\'s your perfect brand ambassador, flawlessly executing your marketing message on a global scale.</li>
+        </ul>
+
+        <h2 className={h2Class}>Turning Agent Questions into Advertising Intelligence</h2>
+        <p className={pClass}>
+          Imagine knowing exactly what the travel trade thinks about your latest product launch, in real-time. That\'s the data an AI Sales Assistant unlocks. Every question an agent asks is a piece of invaluable market research.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">5. Continuous Learning</h2>
-        <p>
-          AI systems continuously learn from interactions, becoming more accurate and helpful over time. This means the platform 
-          improves with every query, benefiting all users.
+        <p className={pClass}>
+          Our analytics dashboard transforms your support channel into an unparalleled advertising intelligence tool. You can:
+        </p>
+        <ul className={ulClass}>
+            <li><strong className={strongClass}>Identify Market Trends:</strong> See what features, destinations, or policies are generating the most buzz and tailor your next marketing campaign accordingly.</li>
+            <li><strong className={strongClass}>Discover Knowledge Gaps:</strong> Are agents constantly asking about a specific policy? That\'s a signal to create clearer training materials or a targeted email update.</li>
+            <li><strong className={strongClass}>Optimize Your Offerings:</strong> The questions you receive are direct feedback on your products and services, providing insights that can guide future development.</li>
+        </ul>
+         <p className={pClass}>
+          This data allows you to move from guessing what the market wants to knowing what it needs, making your advertising spend dramatically more effective.
+        </p>
+
+        <h2 className={h2Class}>The Ultimate ROI: Becoming Indispensable</h2>
+        <p className={pClass}>
+          The goal of any great marketing campaign is to make your brand the default choice. By providing an indispensable tool that saves agents time and helps them make money, you are embedding your brand directly into their workflow. You\'re not just another supplier fighting for their attention; you are their trusted, go-to partner for getting the job done.
+        </p>
+        <p className={pClass}>
+            It\'s time to invest in a marketing channel that agents actually want to use. Stop shouting and start having a conversation. <Link to="/pricing" className={linkClass}>Learn more about how TravelIQ can become the centerpiece of your trade marketing strategy today.</Link>
         </p>
       </>
-    ),
+    )
   },
   {
-    id: '3',
-    title: 'Meet Vee: Your 24/7 AI Travel Companion',
+    id: 'ai-copilot-for-agents',
+    title: 'Your AI Co-Pilot Has Arrived: Why Instant Answers Are No Longer a Luxury, But a Necessity',
+    author: 'The TravelIQ Team',
     date: 'November 1, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2070&auto=format&fit=crop',
-    summary: 'Get to know Vee, TravelIQ\'s intelligent virtual assistant designed specifically for travel professionals.',
-    author: 'Emily Chen',
+    summary: 'The modern travel agent is an expert, a concierge, and a problem-solver. But you can\'t be an expert on everything, all the time. Learn how AI is becoming the essential co-pilot for the trade, providing the instant, verified answers you need to close more sales.',
+    imageUrl: 'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     content: (
-      <>
-        <p>
-          In the fast-paced world of travel, having a knowledgeable assistant available around the clock can make all the difference. 
-          That's why we created Vee, TravelIQ's AI-powered virtual assistant.
+       <>
+        <p className={pClass}>
+          The world moves at the speed of a client\'s question. A customer is on the phone, excited about a trip, but they have one final query: "Can we get adjoining rooms?" "What\'s the luggage policy for sports equipment?" "Is that resort\'s kids\' club open in May?" In that moment, your expertise is on the line. The difference between closing the sale and a frustrating "I\'ll call you back" is the speed and confidence of your answer.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Who is Vee?</h2>
-        <p>
-          Vee is more than just a chatbot. She's a sophisticated AI assistant trained specifically on travel industry data, 
-          including information from hundreds of suppliers, thousands of destinations, and millions of travel scenarios.
+        <p className={pClass}>
+          For years, getting that answer has been a bottleneck. It meant putting a client on hold, navigating a clunky supplier portal, searching through a month of emails, or worse, calling a BDM who may or may not be available. This friction is a tax on your time and a risk to your sale. In today\'s fast-paced world, this old way of working is no longer sustainable.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">What Can Vee Do?</h2>
-        <p>
-          Vee can answer questions about supplier policies, compare offerings, provide destination insights, and even help with 
-          complex itinerary planning. She understands context, remembers your conversation history, and provides accurate, 
-          sourced information.
+
+        <h2 className={h2Class}>The End of "Please Hold"</h2>
+        <p className={pClass}>
+          Artificial Intelligence is rapidly moving from a futuristic buzzword to an indispensable professional tool. For the travel trade, this isn\'t about replacing the agent\'s expertise; it\'s about <strong className={strongClass}>supercharging it.</strong> Think of it not as an artificial agent, but as your personal AI co-pilot, dedicated to handling the time-consuming task of information retrieval so you can focus on advising your client.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Always Learning</h2>
-        <p>
-          Every interaction with Vee makes her smarter. She learns from agent feedback, stays updated with the latest supplier 
-          information, and continuously improves her responses to better serve the travel community.
+        <p className={pClass}>
+          The necessity for this shift is clear. Clients have access to more information than ever, but they come to you for curation and verification. Your value lies in your ability to cut through the noise and provide a trusted, definitive answer. An AI co-pilot ensures you can do this in seconds, not hours.
         </p>
-        <p>
-          Experience the future of travel support. Chat with Vee today and discover how AI can elevate your agent experience.
+
+        <h2 className={h2Class}>TravelIQ: Your On-Demand Knowledge Partner</h2>
+        <p className={pClass}>
+          This is the future we are building at TravelIQ. We saw the inefficiency and created a platform to eliminate it. By giving you a direct, 24/7 line to an AI Sales Assistant for every major supplier—trained on their official, verified data—we are fundamentally changing the dynamics of trade communication.
+        </p>
+        <p className={pClass}>
+          This is what it means to have an AI co-pilot in your corner:
+        </p>
+        <ul className={ulClass}>
+            <li><strong className={strongClass}>Instantaneous Knowledge:</strong> Access deep product details, policies, and promotional info the moment a question arises. Use your voice or text, and get an answer in seconds.</li>
+            <li><strong className={strongClass}>Guaranteed Accuracy:</strong> The AI provides information sourced directly from the supplier. It\'s not guesswork; it\'s verified data, giving you the confidence to advise your clients correctly.</li>
+            <li><strong className={strongClass}>24/7 Availability:</strong> Your co-pilot never sleeps. Whether it\'s late-night research or an early-morning client call across time zones, the answer is always there.</li>
+            <li><strong className={strongClass}>Elevated Service:</strong> Deliver a level of responsiveness that was previously impossible. This speed and accuracy reinforces your value and builds client loyalty.</li>
+        </ul>
+
+        <h2 className={h2Class}>The Future of Expertise is Here</h2>
+        <p className={pClass}>
+          Being a great travel agent is about building relationships and crafting perfect experiences. It\'s not about knowing every single detail of every single supplier by heart. That\'s an impossible task.
+        </p>
+        <p className={pClass}>
+          The truly cutting-edge agent of today and tomorrow will be the one who best leverages technology to enhance their human expertise. Having an AI-powered platform to handle the data retrieval is no longer a futuristic luxury; it\'s a modern necessity for staying competitive. It allows you to work smarter, sell faster, and be the expert your clients rely on.
+        </p>
+        <p className={pClass}>
+            The future of travel expertise isn\'t about memorization; it\'s about instant access. <Link to="/suppliers" className={linkClass}>Start talking to our AI assistants today</Link> and experience the difference. For free.
         </p>
       </>
-    ),
+    )
   },
   {
-    id: '4',
-    title: 'TravelIQ AI Studio: Generate Marketing Content in Seconds',
+    id: 'why-traveliq',
+    title: 'Why TravelIQ? Embracing the Future of Travel Trade Communication',
+    author: 'The TravelIQ Team',
+    date: 'October 26, 2025',
+    summary: 'In a world where AI is becoming a part of our daily lives, the travel trade is on the cusp of a major evolution. Discover why an AI-powered platform isn\'t just a futuristic gimmick, but a necessity for survival and success in today\'s fast-paced market.',
+    imageUrl: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    content: (
+      <>
+        <p className={pClass}>
+            Remember when smartphones seemed like a novelty? Or when satellite navigation was a luxury car feature? Today, these technologies are seamlessly integrated into our daily lives. Artificial Intelligence is on the exact same trajectory. It\'s no longer a question of *if* AI will become a standard professional tool, but *when*—and the travel industry is primed for a revolution.
+        </p>
+        <p className={pClass}>
+            For too long, the communication chain between travel suppliers and agents has been inefficient. It\'s a world of waiting on hold, sifting through endless email chains, and trying to find a single, crucial piece of information on a clunky B2B portal. This friction costs time, money, and ultimately, sales.
+        </p>
+
+        <h2 className={h2Class}>The Problem with "Business as Usual"</h2>
+        <p className={pClass}>
+            The current model is broken. Travel agents, the frontline experts, need accurate information <strong className={strongClass}>at the moment of sale.</strong> Their client is on the phone, ready to book, but has a specific question about a hotel\'s pet policy or a cruise line\'s new dining package. The agent needs an answer now, not in two hours or the next business day.
+        </p>
+        <p className={pClass}>
+            Suppliers, on the other hand, invest millions in their sales teams, but those teams are limited by office hours, time zones, and sheer human capacity. They can\'t be available for every agent, in every corner of the world, 24/7.
+        </p>
+
+        <h2 className={h2Class}>Enter TravelIQ: The Intelligent Answer, Instantly.</h2>
+        <p className={pClass}>
+            This is precisely why we built TravelIQ. It\'s not just about adding technology for technology\'s sake; it\'s about solving a fundamental business problem. We provide an intelligent, AI-powered platform that acts as a direct, on-demand line of communication between suppliers and the trade.
+        </p>
+
+        <h3 className={h3Class}>For Travel Agents: Your Unfair Advantage</h3>
+        <p className={pClass}>
+            For agents, TravelIQ is a game-changer, and it\'s completely free. Imagine having a direct line to a senior sales rep for every major supplier, one who is always on duty, never gets tired, and has perfect knowledge of their product. That\'s what we offer.
+        </p>
+        <ul className={ulClass}>
+            <li><strong className={strongClass}>Instant Expertise:</strong> Get verified, up-to-the-minute answers in seconds. No hold music, no waiting for an email reply.</li>
+            <li><strong className={strongClass}>Boost Confidence:</strong> Serve your clients with greater accuracy and speed, solidifying your role as a trusted expert.</li>
+            <li><strong className={strongClass}>Save Hours Weekly:</strong> Reclaim the time you lose searching for information and dedicate it to what you do best: selling travel.</li>
+        </ul>
+
+        <h3 className={h3Class}>For Suppliers: A Smarter Sales Channel</h3>
+        <p className={pClass}>
+            For suppliers, our platform offers a revolutionary way to support and engage the trade at a fraction of the cost of traditional methods. Your custom-trained AI Sales Assistant ensures your brand message is consistent, your information is always current, and your reach is global.
+        </p>
+        <ul className={ulClass}>
+            <li><strong className={strongClass}>Drastic Cost Reduction:</strong> Supplement your sales team and reduce the cost per agent interaction by over 90%.</li>
+            <li><strong className={strongClass}>Unlimited Global Reach:</strong> Provide 24/7/365 support to agents anywhere in the world, in any time zone.</li>
+            <li><strong className={strongClass}>Powerful Insights:</strong> Understand what the trade is asking for in real-time with our analytics dashboard, and capture qualified leads automatically.</li>
+        </ul>
+
+        <h2 className={h2Class}>Be Among the First, Not the Last</h2>
+        <p className={pClass}>
+            The shift to AI-powered professional tools is happening now. Just like the travel businesses that embraced online booking early on gained a massive advantage, those who adopt intelligent communication platforms will lead the industry tomorrow. TravelIQ is more than a platform; it\'s a vision for a more connected, efficient, and intelligent travel trade.
+        </p>
+        <p className={pClass}>
+            Don\'t get left behind in the world of hold music and unread emails. <Link to="/suppliers" className={linkClass}>Explore our supplier directory</Link> or <Link to="/pricing" className={linkClass}>learn how to get your brand onboard</Link> today. The future is calling.
+        </p>
+      </>
+    )
+  },
+  {
+    id: 'uk-travel-trends',
+    title: 'Cutting Through the Noise: A Supplier\'s Guide to Engaging the UK Travel Trade',
+    author: 'The TravelIQ Team',
     date: 'October 28, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
-    summary: 'Learn how TravelIQ\'s AI Studio helps travel agents create stunning visual content for their marketing campaigns.',
-    author: 'Michael Thompson',
+    summary: 'The UK travel market is fiercely competitive. Agents are overwhelmed, and suppliers are struggling to be heard. We explore the latest trends and reveal the most effective, efficient, and fastest way to keep the trade engaged and up-to-date.',
+    imageUrl: 'https://images.pexels.com/photos/7533320/pexels-photo-7533320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     content: (
       <>
-        <p>
-          Marketing is crucial for travel agents, but creating compelling visual content can be time-consuming and expensive. 
-          TravelIQ's AI Studio changes that by putting professional-grade content creation tools directly in your hands.
+        <p className={pClass}>
+            The UK travel industry is a dynamic and crowded marketplace. For suppliers, from global airlines to boutique hotels, capturing the attention of the travel trade is a constant battle. Travel agents are the gatekeepers to a vast customer base, but they are inundated with a relentless stream of information: email updates, webinar invitations, FAM trip offers, and policy changes.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Video Generation</h2>
-        <p>
-          Create promotional videos in minutes, not days. Simply describe the content you want, and our AI generates 
-          professional-quality videos perfect for social media, email campaigns, or client presentations.
+        <p className={pClass}>
+            In this environment of information overload, how can a supplier not only be heard but become a trusted, go-to resource for agents? The answer lies in shifting from a strategy of <em className="text-brand-light/90">broadcasting</em> information to one of <strong className={strongClass}>on-demand availability.</strong>
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Image Creation & Editing</h2>
-        <p>
-          Need custom images for your marketing materials? AI Studio can generate unique travel images tailored to your 
-          specifications or edit existing photos to match your brand aesthetic.
+
+        <h2 className={h2Class}>The Core Challenge: The Agent\'s Moment of Need</h2>
+        <p className={pClass}>
+            A recent trend in the UK trade is the demand for hyper-efficiency. Agents are under pressure to close sales quickly and accurately. They don\'t have time to search their inbox for last week\'s newsletter or sit through an hour-long webinar for a two-minute update.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Time and Cost Savings</h2>
-        <p>
-          What used to require hiring designers or photographers can now be accomplished in seconds. This democratization of 
-          content creation means even small agencies can compete with larger players in terms of marketing quality.
+        <p className={pClass}>
+            Their critical need for information arises <strong className={strongClass}>at the point of sale.</strong> When a client is on the line, the agent needs the right answer immediately. The supplier who provides that answer, in that moment, is the one who wins the booking.
         </p>
-        <p>
-          Unlock your creative potential with AI Studio and take your travel marketing to the next level.
+        <p className={pClass}>
+            Traditional methods are failing to meet this need:
         </p>
-      </>
-    ),
-  },
-  {
-    id: '5',
-    title: 'Case Study: How One Agency Increased Bookings by 45% with TravelIQ',
-    date: 'October 25, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop',
-    summary: 'A real-world success story of how TravelIQ helped a mid-sized travel agency dramatically improve their performance.',
-    author: 'Sarah Mitchell',
-    content: (
-      <>
-        <p>
-          When Coastal Travel Group adopted TravelIQ six months ago, they were struggling with inefficient workflows and 
-          declining client satisfaction. Today, they're thriving. Here's their story.
+        <ul className={ulClass}>
+            <li><strong className={strongClass}>Email Blasts:</strong> Often ignored or lost in a cluttered inbox. Critical updates are easily missed.</li>
+            <li><strong className={strongClass}>Webinars & Training:</strong> Valuable, but require a significant time commitment and aren\'t accessible for on-the-spot queries.</li>
+            <li><strong className={strongClass}>B2B Portals:</strong> Can be difficult to navigate, with information buried deep in menus and PDF documents.</li>
+        </ul>
+
+        <h2 className={h2Class}>The Triple-Threat Solution: Effective, Efficient, Fast</h2>
+        <p className={pClass}>
+            To truly engage the UK travel trade today, suppliers must adopt a communication strategy that is effective, efficient, and fast. This is where a centralized, AI-powered platform like TravelIQ becomes indispensable.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">The Challenge</h2>
-        <p>
-          With a team of 12 agents, Coastal Travel was spending an average of 3 hours per day per agent researching supplier 
-          information and answering routine questions. This left little time for actual selling and client relationship building.
+
+        <h3 className={h3Class}>1. The Most Effective Way: Be the Source of Truth</h3>
+        <p className={pClass}>
+            Effectiveness isn\'t about how loud you shout; it\'s about being the most reliable resource. By creating an official AI Sales Assistant on TravelIQ, you establish a single, verified source of truth for your brand. Agents learn to trust that the information they receive is accurate and directly from you, building brand loyalty and confidence.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">The Solution</h2>
-        <p>
-          Implementing TravelIQ provided instant access to comprehensive supplier data through Vee, automated lead management, 
-          and AI-powered marketing content creation through AI Studio.
+
+        <h3 className={h3Class}>2. The Most Efficient Way: Update Once, Reach All</h3>
+        <p className={pClass}>
+            Efficiency is about maximizing impact while minimizing effort. Instead of crafting multiple email campaigns and coordinating with various teams, you update your AI\'s knowledge base in one place. That new policy, promotion, or itinerary is instantly available to thousands of agents across the UK and beyond, 24/7. It streamlines your internal processes and frees up your sales team to focus on high-value relationships.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">The Results</h2>
-        <p>
-          Within six months, Coastal Travel saw:
-          <ul className="list-disc ml-6 mt-4 space-y-2">
-            <li>45% increase in total bookings</li>
-            <li>60% reduction in research time</li>
-            <li>80% faster client response times</li>
-            <li>35% improvement in client satisfaction scores</li>
-          </ul>
+
+        <h3 className={h3Class}>3. The Fastest Way: From Question to Answer in Seconds</h3>
+        <p className={pClass}>
+            In the travel business, speed wins. An agent using TravelIQ can ask a complex question about your product and receive a detailed, accurate answer in seconds. This speed is your ultimate competitive advantage. It empowers the agent to close the sale confidently, making them more likely to recommend your brand in the future.
         </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">The Takeaway</h2>
-        <p>
-          "TravelIQ didn't just make us more efficient," says owner Jennifer Martinez. "It transformed how we do business. 
-          Our agents are happier, our clients are more satisfied, and our bottom line has never looked better."
+
+        <h2 className={h2Class}>Stop Competing for Attention, Start Providing Value</h2>
+        <p className={pClass}>
+            The latest trend in trade engagement isn\'t a new social media platform or a fancier email template. It\'s a fundamental shift towards providing instant, frictionless value. By empowering agents with the information they need, exactly when they need it, you move from being just another supplier to being an essential partner.
+        </p>
+        <p className={pClass}>
+            It\'s time to cut through the noise. <Link to="/partnership" className={linkClass}>Book a demo of TravelIQ</Link> and discover how our AI Sales Support platform can transform your relationship with the UK travel trade.
         </p>
       </>
-    ),
-  },
-  {
-    id: '6',
-    title: 'The TravelIQ Supplier Network: Your Gateway to the World\'s Best Brands',
-    date: 'October 20, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2070&auto=format&fit=crop',
-    summary: 'Explore TravelIQ\'s comprehensive supplier directory featuring the world\'s leading travel brands.',
-    author: 'James Rodriguez',
-    content: (
-      <>
-        <p>
-          At the heart of TravelIQ is our extensive supplier network, bringing together the world's most trusted travel brands 
-          in one intelligent platform.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Comprehensive Coverage</h2>
-        <p>
-          From major airlines like Emirates and United to luxury hotel chains like Marriott and Hyatt, our supplier directory 
-          covers all major segments of the travel industry.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Always Current</h2>
-        <p>
-          Supplier information is updated in real-time, ensuring you always have access to the latest policies, offerings, 
-          and promotions.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-brand-light">Intelligent Search</h2>
-        <p>
-          Our AI-powered search makes finding the right supplier information effortless. Ask questions in natural language 
-          and get instant, accurate answers.
-        </p>
-        <p>
-          Discover the power of having the world's best travel brands at your fingertips. Explore the TravelIQ supplier 
-          directory today.
-        </p>
-      </>
-    ),
-  },
+    )
+  }
 ];
