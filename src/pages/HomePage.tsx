@@ -16,11 +16,13 @@ const NewsTicker: React.FC = () => {
     useEffect(() => {
         const fetchNews = async () => {
             const fallbackNews = [
-                { headline: "Travel Weekly: The latest news from the UK travel industry.", link: "https://travelweekly.co.uk/news" },
-                { headline: "TTG: Essential news and insights for the travel trade.", link: "https://www.ttgmedia.com/news" },
-                { headline: "Skift: Global travel industry intelligence and analysis.", link: "https://skift.com/" },
-                { headline: "PhocusWire: Technology and travel news, analysis, and interviews.", link: "https://www.phocuswire.com/" },
-                { headline: "Breaking Travel News: The leading online resource for travel industry executives.", link: "https://www.breakingtravelnews.com/" }
+                { headline: "UK travel industry adapts to changing consumer demands", link: "https://travelweekly.co.uk/news" },
+                { headline: "Latest travel trade insights and market updates", link: "https://www.ttgmedia.com/news" },
+                { headline: "Global travel industry trends and analysis", link: "https://skift.com/" },
+                { headline: "Travel technology innovations reshaping the industry", link: "https://www.phocuswire.com/" },
+                { headline: "Breaking: Travel trade partnerships and new developments", link: "https://www.breakingtravelnews.com/" },
+                { headline: "AI and digital transformation in travel sector", link: "https://www.traveldailymedia.com/" },
+                { headline: "Sustainable travel initiatives gaining momentum", link: "https://www.sustainable-travel-international.org/" }
             ];
 
             const SERPER_API_KEY = import.meta.env.VITE_SERPER_API_KEY;
@@ -39,9 +41,10 @@ const NewsTicker: React.FC = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        q: "latest travel trade news uk",
+                        q: "travel trade news 2025 UK agents suppliers",
                         gl: "uk",
-                        num: 10
+                        num: 10,
+                        tbs: "qdr:d" // Last day
                     }),
                 });
 
