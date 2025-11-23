@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 interface SupplierChatbotProps {
   isOpen: boolean;
   onClose: () => void;
+  avatarUrl?: string;
 }
 
 interface Message {
@@ -15,6 +16,9 @@ interface Message {
   text: string;
   sources?: { title: string; uri: string }[];
 }
+
+// Default fallback if not provided
+const VEE_AVATAR_DEFAULT = "/traveliq-ai-avatar.png";
 
 // --- ICONS ---
 const MicrophoneIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -40,8 +44,11 @@ const SpeakerIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <path fillRule="evenodd" d="M4 8a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1H5a1 1 0 01-1-1V8zm1-3a3 3 0 00-3 3v8a3 3 0 003 3h2a3 3 0 003-3V8a3 3 0 00-3-3H5z" clipRule="evenodd" />
   </svg>
 );
-const AudioWaveIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg viewBox="0 0 24 24" {...props} className={`animate-pulse ${props.className}`}>
+interface AudioWaveIconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
+const AudioWaveIcon: React.FC<AudioWaveIconProps> = (props) => (
+    <svg viewBox="0 0 24 24" {...props} className={`animate-pulse ${props.className || ''}`}>
         <path d="M3 10h2v4H3z M7 8h2v8H7z M11 6h2v12h-2z M15 8h2v8h-2z M19 10h2v4h-2z" fill="currentColor"></path>
     </svg>
 );
@@ -75,7 +82,7 @@ const MessageContent: React.FC<{ text: string; onClose: () => void; }> = ({ text
                         <Link 
                             key={index} 
                             to={url}
-                            className="text-cyan-400 font-bold underline hover:opacity-80"
+                            className="text-brand-cyan font-bold underline hover:opacity-80"
                             onClick={onClose}
                         >
                             {linkText}
@@ -88,12 +95,20 @@ const MessageContent: React.FC<{ text: string; onClose: () => void; }> = ({ text
     );
 };
 
-const SupplierChatbot: React.FC<SupplierChatbotProps> = ({ isOpen, onClose }) => {
+const SupplierChatbot: React.FC<SupplierChatbotProps> = ({ isOpen, onClose, avatarUrl = VEE_AVATAR_DEFAULT }) => {
     type ChatMode = 'idle' | 'text' | 'live';
     type LiveStatus = 'idle' | 'connecting' | 'greeting' | 'connected' | 'error';
     type TranscriptEntry = { speaker: 'You' | 'AI'; text: string };
     
     const { ai, error: aiError } = useAI();
+    
+    // Show AI initialization error if present
+    useEffect(() => {
+        if (aiError) {
+            console.error('AI Service Error:', aiError);
+            // Don't crash the component, just log the error
+        }
+    }, [aiError]);
     const { addLead } = useLeads();
     const [mode, setMode] = useState<ChatMode>('idle');
     const [conversation, setConversation] = useState<Message[]>([]);
@@ -168,12 +183,33 @@ const SupplierChatbot: React.FC<SupplierChatbotProps> = ({ isOpen, onClose }) =>
     // --- TEXT CHAT LOGIC ---
     const startTextChat = () => {
         setMode('text');
-        const welcomeMessage = { sender: 'ai' as const, text: "Hey! I'm Vee, your expert AI ambassador for TravelIQ. I'm happy to help. Are you a travel agent or a travel supplier?" };
+        
+        // Check if AI service is available
+        if (!ai) {
+            const errorMessage = { 
+                sender: 'ai' as const, 
+                text: "I apologize, but I'm currently unavailable. The AI service needs to be configured. Please contact support to get this resolved." 
+            };
+            setConversation([errorMessage]);
+            return;
+        }
+        
+        const welcomeMessage = { sender: 'ai' as const, text: "Hello! I'm Vee, the Expert AI Sales Ambassador for TravelIQ. I have an eloquent British accent and speak in multiple languages. I'm here to educate travel agents and travel suppliers about TravelIQ's revolutionary Voice AI sales support network. Are you a travel agent or a travel supplier?" };
         setConversation([welcomeMessage]);
     };
 
     const handleSendTextMessage = useCallback(async (text: string) => {
-        if (!text.trim() || isLoading || !ai) return;
+        if (!text.trim() || isLoading) return;
+        
+        // Check if AI service is available
+        if (!ai) {
+            const errorMessage = { 
+                sender: 'ai' as const, 
+                text: "I apologize, but I'm currently unavailable. Please ensure the AI service is properly configured. Try refreshing the page or contact support." 
+            };
+            setConversation(prev => [...prev, errorMessage]);
+            return;
+        }
         const userMessage: Message = { sender: 'user', text };
         addMessage({ sender: 'user', text });
         setConversation(prev => [...prev, userMessage]);
@@ -181,25 +217,39 @@ const SupplierChatbot: React.FC<SupplierChatbotProps> = ({ isOpen, onClose }) =>
         setIsLoading(true);
 
         try {
-            const systemInstruction = `You are 'Vee', the expert AI Sales Ambassador for the TravelIQ platform. Your personality is professional, highly intelligent, enthusiastic, and persuasive. Your primary goal is to educate users—who are either travel agents or travel suppliers—about the immense value of TravelIQ and encourage them to engage deeper. You are a sales expert for the platform itself.
+            const systemInstruction = `You are 'Vee', the Expert AI Sales Ambassador for TravelIQ platform. You have an eloquent British accent and can speak and answer in multiple languages. Your personality is professional, highly intelligent, enthusiastic, and highly persuasive.
+
+**Your Primary Mission:** Educate users—who are either travel agents or travel suppliers—about TravelIQ's immense value and encourage deeper engagement. You are a sales expert for the TravelIQ platform itself, not general travel products.
+
+**What is TravelIQ:** The travel industry's first Voice AI sales support network. Revolutionary B2B platform that instantly, effectively, and cost-efficiently connects Travel Suppliers directly with Travel Agents worldwide. Travel Suppliers pay to be on the platform to engage and connect with the UK and global travel agent community 24/7. The platform turns supplier's static knowledge base (policies, products, FAQs, URLs) into interactive, expert AI Sales Assistant accessible instantly via voice or chat.
+
+**Important Clarification:** TravelIQ is NOT specialized in tours and travel activities; it's a B2B communication and sales support platform for the entire travel trade (airlines, hotels, cruise lines, DMCs, tour operators, tourist boards, etc.)
 
 **If the user is a TRAVEL AGENT:**
-- EMPHASIZE that the platform is **completely free** for them.
-- HIGHLIGHT the core benefit: Instant, 24/7 access to official, verified information from leading travel suppliers via voice or chat.
-- USE phrases like "Stop searching, start selling," "No more hold music," and "Your AI co-pilot."
-- EXPLAIN how this saves them hours, boosts their expertise, and helps them close more sales faster.
-- ENCOURAGE them to explore the directory with a call to action like, "Why not start by exploring our growing list of suppliers? You can find them on the [Suppliers page](/suppliers)."
+- EMPHASISE that the platform is completely FREE for all Travel Agents
+- HIGHLIGHT the core benefit: Instant, 24/7 access to official, verified information directly from leading travel suppliers via voice or chat. This is the most reliable source for supplier policies and products.
+- USE high-value phrases like "Stop searching websites and waiting for email replies," "No more hold music or delays'. 'Your reliable, instant, smart 24/7 AI Sales Support'
+- EXPLAIN the value: Saves hours, ensures accurate reliable uptodate information, boosts expertise, helps close sales faster.
+- ENCOURAGE them to explore the directory with a call to action like, "Why not start by exploring our growing list of partners? You can find them on the [Suppliers](/suppliers) page."
 
 **If the user is a TRAVEL SUPPLIER:**
-- POSITION TravelIQ as a revolutionary, cost-effective sales and marketing channel to the global travel trade.
-- HIGHLIGHT the key benefits: 24/7 global reach, over 90% cost reduction compared to traditional sales teams, perfect brand consistency, and valuable analytics on what agents are asking.
-- EXPLAIN that our platform turns their static knowledge base into an interactive, expert AI Sales Support.
-- MENTION our pricing plans and encourage them to learn more.
-- PROACTIVELY offer to connect them with our team for a demo. If they show any interest (e.g., ask about cost, how it works, or say "I'm interested"), you should direct them to our sales team by saying something like: "That's a great question. I can have our team give you a personalized demo. Please reach out to them via our Contact Us page or email sales@voicific.com."
+- POSITION TravelIQ as a revolutionary, cost-effective, reliable, instant, always-on sales and marketing channel to the global travel trade
+- HIGHLIGHT the key benefits:
+  • 24/7/365 Sales Support: Information instantly available to agents in the UK or globally
+  • Over 90% Cost Reduction: Compared to hiring, training, and maintaining traditional human sales team. Voice AIs are never tired, consistent, smart and reliable. Cannot hallucinate as knowledge base provided by suppliers themselves.
+  • Perfect Brand Consistency: Every agent gets exact, verified consistent information, ensuring brand and policy integrity
+  • Valuable Analytics: Insights into exactly what agents are asking, and database collections, helping refine sales and product strategy
+- EXPLAIN that our platform transforms their static manuals, presentations and FAQs into interactive, expert AI Voice Sales Assistant, instantly accessible to the agent community
+- MENTION our standard and custom pricing plans and encourage them to learn more.
+
+**Lead Capture and Sales Team Contact:**
+- PROACTIVELY OFFER: To have the sales team contact them for a personalized demo or partnership discussion
+- CRITICAL STEP: If they show any interest (e.g., ask about cost, how it works, or say "I'm interested"), you MUST ensure to ask for their contact details (Name, Company, Email, and Phone Number) during the conversation
+- Direct them to our Contact page or provide appropriate contact information
 
 **General Capabilities:**
-- **Grounding:** You can use Google Search to answer questions about the travel industry, such as recent news or trends. You MUST NOT act as a travel agent, create itineraries, or assist with bookings. Your focus is on the TravelIQ platform and the industry itself. Always cite your sources.
-- **Navigation:** Use markdown links like [Page Name](/page-url) to direct users to key pages such as [Pricing](/pricing), [Suppliers](/suppliers), and our [Blog](/blog).
+- **Grounding:** You can use Google Search and Google Maps to answer questions about the travel industry, geography, or recent news. You MUST NOT act as a travel agent, create itineraries, or assist with bookings. Your focus is on the TravelIQ platform and the industry itself. Always cite your sources.
+- **Navigation:** Use markdown links like [Page Name](/page-url) to direct users to key pages such as [Partnership](/partnership), [Suppliers](/suppliers), and our [Blog](/blog).
 
 Your mission is to clearly articulate the value proposition for both audiences and drive them to take the next step.`;
             
@@ -212,11 +262,12 @@ Your mission is to clearly articulate the value proposition for both audiences a
 
             const config: any = {
                 systemInstruction,
-                tools: [{ googleSearch: {} }],
+                tools: [{ googleSearch: {} }, { googleMaps: {} }],
             };
 
+            // Updated to use gemini-3-pro-preview for the chatbot as requested
             const response = await ai.models.generateContent({
-                model: "gemini-2.5-flash",
+                model: "gemini-3-pro-preview",
                 contents: contents,
                 config: config,
             });
@@ -228,7 +279,7 @@ Your mission is to clearly articulate the value proposition for both audiences a
                 const validSources = groundingChunks
                     .map((chunk: any) => {
                         if (chunk.web) return { title: chunk.web.title || '', uri: chunk.web.uri || '' };
-                        if (chunk.maps) return { title: chunk.maps.title || 'View on Google Maps', uri: chunk.maps.uri || '' };
+                        if (chunk.maps) return { title: chunk.maps.title || 'Google Maps', uri: chunk.maps.uri || '' };
                         return null;
                     })
                     .filter((item): item is { title: string; uri: string } => item !== null && !!item.title && !!item.uri);
@@ -320,7 +371,7 @@ Your mission is to clearly articulate the value proposition for both audiences a
             }
             const outputCtx = outputAudioContextRef.current;
 
-            const greetingText = "Hi there! I'm Vee, your guide to TravelIQ. How can I help you today?";
+            const greetingText = "Good day! I'm Vee, your Expert AI Sales Ambassador for TravelIQ. I have an eloquent British accent and speak multiple languages. I'm here to educate travel agents and suppliers about our revolutionary Voice AI sales support network. How may I assist you today?";
             const ttsResponse = await ai.models.generateContent({
                 model: "gemini-2.5-flash-preview-tts",
                 contents: [{ parts: [{ text: greetingText }] }],
@@ -411,7 +462,7 @@ Your mission is to clearly articulate the value proposition for both audiences a
                 config: {
                     responseModalities: [Modality.AUDIO],
                     speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Zephyr' } } },
-                    systemInstruction: `You are 'Vee', the friendly AI for TravelIQ. Your personality is warm, witty, and helpful. You have already greeted the user. Now, listen for their response and continue the conversation. Keep your answers concise. You are speaking to them.`,
+                    systemInstruction: `You are 'Vee', the Expert AI Sales Ambassador for TravelIQ platform. You have an eloquent British accent and speak in multiple languages. Your personality is professional, highly intelligent, enthusiastic, and highly persuasive. You have already greeted the user. Now, listen for their response and continue the conversation, following your primary mission to educate travel agents and suppliers about TravelIQ's value. Keep your answers concise but impactful. You are speaking directly to them.`,
                     inputAudioTranscription: {},
                     outputAudioTranscription: {},
                 },
@@ -440,25 +491,30 @@ Your mission is to clearly articulate the value proposition for both audiences a
                     <>
                         <div className="flex-grow overflow-y-auto py-4 space-y-4">
                             {conversation.map((msg, index) => (
-                                <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}>
+                                <div key={index} className={`flex items-end gap-2 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}>
+                                    {msg.sender === 'ai' && (
+                                        <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 border border-brand-light/10">
+                                            <img src={avatarUrl} alt="Vee" className="w-full h-full object-cover" />
+                                        </div>
+                                    )}
                                     <div className={`p-3 rounded-lg max-w-[85%] border ${msg.sender === 'user' ? 'bg-brand-cyan text-white border-transparent' : 'bg-brand-dark border-brand-light/10'}`}>
                                         <MessageContent text={msg.text} onClose={handleClose} />
                                          {msg.sender === 'ai' && !isLoading && (
                                             <button
                                                 onClick={() => handlePlayTTS(msg.text, index)}
-                                                className="mt-2 text-gray-300 hover:text-cyan-400 transition-colors"
+                                                className="mt-2 text-brand-gray hover:text-brand-cyan transition-colors"
                                                 aria-label={playingMessageIndex === index ? "Stop audio" : "Play audio"}
                                             >
-                                                {playingMessageIndex === index ? <AudioWaveIcon className="w-5 h-5 text-cyan-400" /> : <SpeakerIcon className="w-5 h-5" />}
+                                                {playingMessageIndex === index ? <AudioWaveIcon className="w-5 h-5 text-brand-cyan" /> : <SpeakerIcon className="w-5 h-5" />}
                                             </button>
                                         )}
                                          {msg.sources && msg.sources.length > 0 && (
-                                            <div className="mt-3 pt-2 border-t border-cyan-400/20">
-                                                <p className="text-xs font-semibold text-gray-300 mb-1">Sources:</p>
+                                            <div className="mt-3 pt-2 border-t border-brand-light/20">
+                                                <p className="text-xs font-semibold text-brand-gray mb-1">Sources:</p>
                                                 <ul className="text-xs space-y-1">
                                                     {msg.sources.map((source, i) => (
                                                         <li key={i}>
-                                                            <a href={source.uri} target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline truncate block" title={source.title}>
+                                                            <a href={source.uri} target="_blank" rel="noopener noreferrer" className="text-brand-cyan hover:underline truncate block" title={source.title}>
                                                                 {i + 1}. {source.title}
                                                             </a>
                                                         </li>
@@ -470,14 +526,19 @@ Your mission is to clearly articulate the value proposition for both audiences a
                                 </div>
                             ))}
                             {isLoading && (
-                                <div className="flex justify-start"><div className="p-3 rounded-lg bg-gradient-to-br from-[#0a1628] via-[#0f1c2e] to-[#0a1628] text-gray-300 animate-pulse">Vee is thinking...</div></div>
+                                <div className="flex items-end gap-2 justify-start">
+                                    <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 border border-brand-light/10">
+                                         <img src={avatarUrl} alt="Vee" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="p-3 rounded-lg bg-brand-dark text-brand-gray animate-pulse">Vee is thinking...</div>
+                                </div>
                             )}
                             <div ref={chatEndRef} />
                         </div>
-                        <div className="mt-auto pt-4 border-t border-cyan-400/10">
+                        <div className="mt-auto pt-4 border-t border-brand-light/10">
                             <form onSubmit={(e) => { e.preventDefault(); handleSendTextMessage(inputValue); }} className="relative">
-                                <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} required disabled={isLoading} className="w-full pl-4 pr-24 py-3 text-white bg-gradient-to-br from-[#0f1c2e]/80 to-[#0d2d3d]/80/80 border border-cyan-400/20 rounded-md focus:ring-2 focus:ring-cyan-400" placeholder="Ask a question..." />
-                                <button type="submit" disabled={isLoading || !inputValue.trim()} className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:opacity-90 disabled:opacity-50">Send</button>
+                                <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} required disabled={isLoading} className="w-full pl-4 pr-24 py-3 text-brand-light bg-brand-bg/80 border border-brand-light/20 rounded-md focus:ring-2 focus:ring-brand-cyan" placeholder="Ask a question..." />
+                                <button type="submit" disabled={isLoading || !inputValue.trim()} className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-cyan to-brand-magenta text-white font-bold py-2 px-4 rounded-lg hover:opacity-90 disabled:opacity-50">Send</button>
                             </form>
                         </div>
                     </>
@@ -497,9 +558,14 @@ Your mission is to clearly articulate the value proposition for both audiences a
                 return (
                     <>
                         <div className="flex-grow overflow-y-auto py-4 space-y-4">
-                             {transcript.length === 0 && <div className="text-center text-gray-300 italic p-4">{statusMessage}</div>}
+                             {transcript.length === 0 && <div className="text-center text-brand-gray italic p-4">{statusMessage}</div>}
                             {transcript.map((entry, index) => (
-                                <div key={index} className={`flex ${entry.speaker === 'AI' ? 'justify-start' : 'justify-end'}`}>
+                                <div key={index} className={`flex items-end gap-2 ${entry.speaker === 'AI' ? 'justify-start' : 'justify-end'}`}>
+                                     {entry.speaker === 'AI' && (
+                                        <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 border border-brand-light/10">
+                                            <img src={avatarUrl} alt="Vee" className="w-full h-full object-cover" />
+                                        </div>
+                                    )}
                                     <div className={`p-3 rounded-lg max-w-[85%] border ${entry.speaker === 'AI' ? 'bg-brand-dark border-brand-light/10' : 'bg-brand-cyan text-white border-transparent'}`}>
                                         <p className="font-bold mb-1">{entry.speaker}</p>
                                         <p className="whitespace-pre-wrap">{entry.text}</p>
@@ -508,7 +574,7 @@ Your mission is to clearly articulate the value proposition for both audiences a
                             ))}
                              <div ref={chatEndRef} />
                         </div>
-                        <div className="mt-auto pt-4 border-t border-cyan-400/10 flex flex-col items-center justify-center gap-2 p-2">
+                        <div className="mt-auto pt-4 border-t border-brand-light/10 flex flex-col items-center justify-center gap-2 p-2">
                              { liveStatus === 'connecting' &&
                                 <div className="p-6 rounded-full transition-all duration-300 shadow-lg flex items-center justify-center bg-gray-500 text-white" aria-label="Connecting...">
                                     <svg className="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -530,7 +596,7 @@ Your mission is to clearly articulate the value proposition for both audiences a
                                     Retry
                                 </button>
                             }
-                            <p className="text-gray-300 text-sm font-semibold mt-2 h-5 text-center px-2">{statusMessage}</p>
+                            <p className="text-brand-gray text-sm font-semibold mt-2 h-5 text-center px-2">{statusMessage}</p>
                         </div>
                     </>
                 );
@@ -538,12 +604,40 @@ Your mission is to clearly articulate the value proposition for both audiences a
             default:
                 return (
                     <div className="flex-grow flex flex-col items-center justify-center text-center gap-6">
-                        <p className="text-lg text-white">Hi there! I'm Vee. How would you like to chat today?</p>
-                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
-                            <button onClick={startLiveSession} className="flex-1 flex items-center justify-center gap-3 bg-cyan-400 text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all transform hover:scale-105">
+                        <div className="w-32 h-32 rounded-full border-4 border-brand-cyan p-1 shadow-xl shadow-brand-cyan/20">
+                            <img src={avatarUrl} alt="Vee" className="w-full h-full rounded-full object-cover" />
+                        </div>
+                        <p className="text-lg text-brand-light font-semibold">Hi there! I'm Vee.<br/>How would you like to chat today?</p>
+                        
+                        {/* Show error message if AI service is unavailable */}
+                        {aiError && (
+                            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 max-w-md">
+                                <p className="text-red-400 text-sm font-semibold mb-2">⚠️ AI Service Configuration Error</p>
+                                <p className="text-red-300 text-xs">The AI service is not properly configured. Please contact support.</p>
+                            </div>
+                        )}
+                        
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm px-4">
+                            <button 
+                                onClick={startLiveSession} 
+                                disabled={!!aiError}
+                                className={`flex-1 flex items-center justify-center gap-3 font-bold py-3 px-6 rounded-lg transition-all transform shadow-lg ${
+                                    aiError 
+                                        ? 'bg-gray-500 text-gray-300 cursor-not-allowed' 
+                                        : 'bg-brand-cyan text-white hover:opacity-90 hover:scale-105'
+                                }`}
+                            >
                                 <MicrophoneIcon className="h-6 w-6" /> Talk to Vee
                             </button>
-                            <button onClick={startTextChat} className="flex-1 flex items-center justify-center gap-3 bg-brand-light/10 text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-light/20 transition-all transform hover:scale-105">
+                            <button 
+                                onClick={startTextChat} 
+                                disabled={!!aiError}
+                                className={`flex-1 flex items-center justify-center gap-3 font-bold py-3 px-6 rounded-lg transition-all transform border ${
+                                    aiError 
+                                        ? 'bg-gray-500/10 text-gray-300 cursor-not-allowed border-gray-500/20' 
+                                        : 'bg-brand-light/10 text-brand-light hover:bg-brand-light/20 hover:scale-105 border-brand-light/10'
+                                }`}
+                            >
                                 <KeyboardIcon className="h-6 w-6" /> Type a Message
                             </button>
                         </div>
@@ -555,11 +649,16 @@ Your mission is to clearly articulate the value proposition for both audiences a
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-gradient-to-br from-[#0a1628] via-[#0f1c2e] to-[#0a1628]/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 animate-fade-in">
-            <div className="bg-gradient-to-br from-[#0f1c2e]/80 to-[#0d2d3d]/80/70 backdrop-blur-lg border border-cyan-400/10 rounded-xl shadow-2xl p-6 max-w-lg w-full relative flex flex-col h-[70vh]">
-                <div className="flex justify-between items-center border-b border-cyan-400/10 pb-4">
-                    <h2 className="font-heading text-xl font-bold text-white">Chat with Vee</h2>
-                    <button onClick={handleClose} className="text-gray-300 hover:text-white" aria-label="Close">
+        <div className="fixed inset-0 bg-brand-dark/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 animate-fade-in">
+            <div className="bg-brand-bg/70 backdrop-blur-lg border border-brand-light/10 rounded-xl shadow-2xl p-6 max-w-lg w-full relative flex flex-col h-[70vh]">
+                <div className="flex justify-between items-center border-b border-brand-light/10 pb-4">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full overflow-hidden border border-brand-light/20">
+                            <img src={avatarUrl} alt="Vee" className="w-full h-full object-cover" />
+                        </div>
+                        <h2 className="font-heading text-xl font-bold text-brand-light">Chat with Vee</h2>
+                    </div>
+                    <button onClick={handleClose} className="text-brand-gray hover:text-brand-light transition-colors" aria-label="Close">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                 </div>
