@@ -748,7 +748,7 @@ export const blogPosts: BlogPost[] = [
     author: 'The TravelIQ Team',
     date: 'November 1, 2025',
     summary: 'The modern travel agent is an expert, a concierge, and a problem-solver. But you can\'t be an expert on everything, all the time. Learn how AI is becoming the essential co-pilot for the trade, providing the instant, verified answers you need to close more sales.',
-    imageUrl: '/imgs/blog_thumbnails_innovation_3.webp',
+    imageUrl: '/imgs/ai_copilot_thumbnail_1.jpg',
     content: (
        <>
         <p className={pClass}>
@@ -799,7 +799,7 @@ export const blogPosts: BlogPost[] = [
     author: 'The TravelIQ Team',
     date: 'October 28, 2025',
     summary: 'The UK travel market is fiercely competitive. Agents are overwhelmed, and suppliers are struggling to be heard. We explore the latest trends and reveal the most effective, efficient, and fastest way to keep the trade engaged and up-to-date.',
-    imageUrl: '/imgs/blog_thumbnails_business_9.png',
+    imageUrl: '/imgs/uk_travel_trends_thumbnail_6.png',
     content: (
       <>
         <p className={pClass}>
