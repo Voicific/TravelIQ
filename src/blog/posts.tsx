@@ -20,12 +20,12 @@ const linkClass = "text-brand-cyan hover:underline font-semibold";
 
 export const blogPosts: BlogPost[] = [
   {
-    id: 'supplier-efficiency-revenue-driver',
-    title: 'Beyond the Hold Button: How TravelIQ Transforms UK Supplier-Trade Communication from Cost Center to Revenue Driver',
-    author: 'The TravelIQ Team',
-    date: 'November 15, 2025',
-    summary: 'Traditional trade support is expensive, slow, and frustrating. Discover how smart UK suppliers are turning their communication channels into revenue-generating assets with AI-powered instant support.',
-    imageUrl: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "supplier-efficiency-revenue-driver",
+    title: "Beyond the Hold Button: How TravelIQ Transforms UK Supplier-Trade Communication from Cost Center to Revenue Driver",
+    author: "The TravelIQ Team",
+    date: "November 15, 2025",
+    summary: "Traditional trade support is expensive, slow, and frustrating. Discover how smart UK suppliers are turning their communication channels into revenue-generating assets with AI-powered instant support.",
+    imageUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
       <>
         <p className={pClass}>
@@ -138,12 +138,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'cost-of-delayed-responses',
-    title: 'The £50,000 Question: Why Most UK Suppliers Are Losing Money Every Time an Agent Calls',
-    author: 'The TravelIQ Team',
-    date: 'November 12, 2025',
-    summary: 'Every delayed response to a trade inquiry costs UK suppliers money. We break down the true cost of inefficient trade communication and reveal why AI-powered instant support is the only financially viable option.',
-    imageUrl: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "cost-of-delayed-responses",
+    title: "The £50,000 Question: Why Most UK Suppliers Are Losing Money Every Time an Agent Calls",
+    author: "The TravelIQ Team",
+    date: "November 12, 2025",
+    summary: "Every delayed response to a trade inquiry costs UK suppliers money. We break down the true cost of inefficient trade communication and reveal why AI-powered instant support is the only financially viable option.",
+    imageUrl: "https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
       <>
         <p className={pClass}>
@@ -288,12 +288,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'manchester-marrakech-two-tier-market',
-    title: 'From Manchester to Marrakech: How Smart UK Suppliers Are Winning More Bookings with AI-Powered Trade Support',
-    author: 'The TravelIQ Team',
-    date: 'November 8, 2025',
-    summary: 'Travel IQ-powered UK suppliers are outperforming traditional competitors across every metric. Discover how AI-powered instant support is creating a two-tier market and why suppliers who don't adapt are being left behind.',
-    imageUrl: 'https://images.pexels.com/photos/7533320/pexels-photo-7533320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "manchester-marrakech-two-tier-market",
+    title: "From Manchester to Marrakech: How Smart UK Suppliers Are Winning More Bookings with AI-Powered Trade Support",
+    author: "The TravelIQ Team",
+    date: "November 8, 2025",
+    summary: "Travel IQ-powered UK suppliers are outperforming traditional competitors across every metric. Discover how AI-powered instant support is creating a two-tier market and why suppliers who don't adapt are being left behind.",
+    imageUrl: "https://images.pexels.com/photos/7533320/pexels-photo-7533320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
       <>
         <p className={pClass}>
@@ -492,12 +492,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'secret-ai-playbook',
-    title: 'The Secret AI Playbook: 3 Advanced Workflows 99% of People Don\'t Know',
-    author: 'The TravelIQ Team',
-    date: 'November 10, 2025',
-    summary: 'You\'re using ChatGPT to write emails. Your neighbour is building an entire course with a single prompt. Stop just asking questions—it\'s time to build a multi-tool AI system that works while you don\'t. Discover three severely underutilized AI workflows that will transform your productivity.',
-    imageUrl: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "secret-ai-playbook",
+    title: "The Secret AI Playbook: 3 Advanced Workflows 99% of People Don\'t Know",
+    author: "The TravelIQ Team",
+    date: "November 10, 2025",
+    summary: "You\'re using ChatGPT to write emails. Your neighbour is building an entire course with a single prompt. Stop just asking questions—it\'s time to build a multi-tool AI system that works while you don\'t. Discover three severely underutilized AI workflows that will transform your productivity.",
+    imageUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
       <>
         <p className={pClass}>
@@ -684,12 +684,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'the-new-marketing-channel',
-    title: 'Stop Shouting into the Void: Why Your Best Marketing Channel is a Conversation',
-    author: 'The TravelIQ Team',
-    date: 'November 5, 2025',
-    summary: 'Email campaigns, banner ads, social media—the battle for agent attention is relentless. But what if the most powerful marketing strategy wasn\'t about shouting louder, but about being available to listen and answer? Discover why an AI Sales Assistant is the ultimate marketing channel.',
-    imageUrl: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "the-new-marketing-channel",
+    title: "Stop Shouting into the Void: Why Your Best Marketing Channel is a Conversation",
+    author: "The TravelIQ Team",
+    date: "November 5, 2025",
+    summary: "Email campaigns, banner ads, social media—the battle for agent attention is relentless. But what if the most powerful marketing strategy wasn\'t about shouting louder, but about being available to listen and answer? Discover why an AI Sales Assistant is the ultimate marketing channel.",
+    imageUrl: "https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
        <>
         <p className={pClass}>
@@ -739,12 +739,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'ai-copilot-for-agents',
-    title: 'Your AI Co-Pilot Has Arrived: Why Instant Answers Are No Longer a Luxury, But a Necessity',
-    author: 'The TravelIQ Team',
-    date: 'November 1, 2025',
-    summary: 'The modern travel agent is an expert, a concierge, and a problem-solver. But you can\'t be an expert on everything, all the time. Learn how AI is becoming the essential co-pilot for the trade, providing the instant, verified answers you need to close more sales.',
-    imageUrl: 'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "ai-copilot-for-agents",
+    title: "Your AI Co-Pilot Has Arrived: Why Instant Answers Are No Longer a Luxury, But a Necessity",
+    author: "The TravelIQ Team",
+    date: "November 1, 2025",
+    summary: "The modern travel agent is an expert, a concierge, and a problem-solver. But you can\'t be an expert on everything, all the time. Learn how AI is becoming the essential co-pilot for the trade, providing the instant, verified answers you need to close more sales.",
+    imageUrl: "https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
        <>
         <p className={pClass}>
@@ -790,12 +790,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'why-traveliq',
-    title: 'Why TravelIQ? Embracing the Future of Travel Trade Communication',
-    author: 'The TravelIQ Team',
-    date: 'October 26, 2025',
-    summary: 'In a world where AI is becoming a part of our daily lives, the travel trade is on the cusp of a major evolution. Discover why an AI-powered platform isn\'t just a futuristic gimmick, but a necessity for survival and success in today\'s fast-paced market.',
-    imageUrl: 'https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "why-traveliq",
+    title: "Why TravelIQ? Embracing the Future of Travel Trade Communication",
+    author: "The TravelIQ Team",
+    date: "October 26, 2025",
+    summary: "In a world where AI is becoming a part of our daily lives, the travel trade is on the cusp of a major evolution. Discover why an AI-powered platform isn\'t just a futuristic gimmick, but a necessity for survival and success in today\'s fast-paced market.",
+    imageUrl: "https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
       <>
         <p className={pClass}>
@@ -849,12 +849,12 @@ export const blogPosts: BlogPost[] = [
     )
   },
   {
-    id: 'uk-travel-trends',
-    title: 'Cutting Through the Noise: A Supplier\'s Guide to Engaging the UK Travel Trade',
-    author: 'The TravelIQ Team',
-    date: 'October 28, 2025',
-    summary: 'The UK travel market is fiercely competitive. Agents are overwhelmed, and suppliers are struggling to be heard. We explore the latest trends and reveal the most effective, efficient, and fastest way to keep the trade engaged and up-to-date.',
-    imageUrl: 'https://images.pexels.com/photos/7533320/pexels-photo-7533320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    id: "uk-travel-trends",
+    title: "Cutting Through the Noise: A Supplier\'s Guide to Engaging the UK Travel Trade",
+    author: "The TravelIQ Team",
+    date: "October 28, 2025",
+    summary: "The UK travel market is fiercely competitive. Agents are overwhelmed, and suppliers are struggling to be heard. We explore the latest trends and reveal the most effective, efficient, and fastest way to keep the trade engaged and up-to-date.",
+    imageUrl: "https://images.pexels.com/photos/7533320/pexels-photo-7533320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     content: (
       <>
         <p className={pClass}>
