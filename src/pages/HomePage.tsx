@@ -118,7 +118,7 @@ const AdvantageCard: React.FC<{ icon: React.ReactNode; title: string; descriptio
   </div>
 );
 
-const FAQItem: React.FC<{ question: string; children: React.ReactNode }> = ({ question, children }) => {
+const FAQItem: React.FC<{ question: React.ReactNode; children: React.ReactNode }> = ({ question, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border-b border-cyan-400/10 py-5 hover:border-cyan-400/30 transition-colors duration-300">
