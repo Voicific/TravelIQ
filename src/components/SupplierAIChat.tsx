@@ -161,7 +161,7 @@ const SupplierAIChat: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
 
 Your mission is to clearly articulate EL AL's value proposition for UK travel trade professionals and drive contact with our sales team for partnership discussions.`;
 
-        welcomeText = "Good [morning/afternoon], thank you for calling EL AL Israel Airlines UK Trade Support. I'm here to assist you with your EL AL trade queries today. How may I help you?";
+        welcomeText = "Good [morning/afternoon], thank you for calling EL AL Israel Airlines UK Trade Support. I'm here to assist you with your trade queries today. How may I help you?";
       } else {
         // Default supplier AI personality
         instruction = `You are the official AI Sales Support assistant for ${supplier.name}, a leading ${supplier.type}. Your personality must be professional, knowledgeable, and extremely helpful. You are speaking directly to a travel agent. Your primary role is to provide information about the supplier you represent.
@@ -172,7 +172,7 @@ Your mission is to clearly articulate EL AL's value proposition for UK travel tr
 - When using search, you MUST cite your sources by providing links.
 - Do not invent information, URLs, or contact details.
 - If you cannot find an answer, state that you do not have that information and suggest the agent consult the official website.
-
+- Promote EL AL UK's B2B portal with all the latest policy and Trade information- https://flyzone.elal.com/en-eu
 **CRITICAL: DO NOT perform tasks outside your role.** This includes, but is not limited to:
 - Creating travel itineraries.
 - Assisting with bookings.

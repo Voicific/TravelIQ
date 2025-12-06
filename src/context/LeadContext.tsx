@@ -50,6 +50,7 @@ export interface Lead {
   agency?: string;
   plan?: string;
   message?: string;
+  wantsDemo?: boolean;
   timestamp: string;
 }
 

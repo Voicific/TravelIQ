@@ -22,7 +22,7 @@ export const AIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const initAI = () => {
       try {
         if (!import.meta.env.VITE_GOOGLE_API_KEY || import.meta.env.VITE_GOOGLE_API_KEY === 'demo_key_replace_with_real') {
-          throw new Error("A Google AI API key is required to use the AI features. Please configure VITE_GOOGLE_API_KEY in your .env file.");
+          throw new Error("Google AI API key is missing or not properly configured. The chatbot requires VITE_GOOGLE_API_KEY environment variable to be set in Cloudflare. Please contact support to resolve this configuration issue.");
         }
         const genAI = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY });
         setAi(genAI);
