@@ -63,7 +63,7 @@ function createBlob(data:Float32Array):Blob{const l=data.length;const int16=new 
 // --- PRONUNCIATION CORRECTION ---
 const getPhoneticallyCorrectedText = (text: string): string => {
   return text
-    .replace(/\bEL AL\b/gi, 'El Al')
+    .replace(/\bEL AL\b/gi, 'el-AHL')
     .replace(/\bTUI\b/gi, 'Too-ee');
 };
 

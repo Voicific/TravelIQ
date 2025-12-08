@@ -4,7 +4,7 @@ import { GOOGLE_SCRIPT_URL as SCRIPT_URL } from '../config.ts';
 // --- Google Sheets Integration ---
 
 const addLeadToSheet = async (lead: Lead) => {
-  if (!SCRIPT_URL || SCRIPT_URL.includes('1WQQcx1LIFhJ0gcZd7MuswG8BENcfRgmEb3PB0Od-9Au6BftpXejf7xjP')) {
+  if (!SCRIPT_URL) {
     console.warn('Google Sheets integration is not configured. Skipping lead save.');
     return;
   }
@@ -21,7 +21,7 @@ const addLeadToSheet = async (lead: Lead) => {
 };
 
 const getLeadsFromSheet = async (): Promise<Lead[] | null> => {
-    if (!SCRIPT_URL || SCRIPT_URL.includes('1WQQcx1LIFhJ0gcZd7MuswG8BENcfRgmEb3PB0Od-9Au6BftpXejf7xjP')) {
+    if (!SCRIPT_URL) {
         console.warn('Google Sheets integration is not configured. Cannot fetch leads.');
         return null;
     }
