@@ -18,7 +18,7 @@ export interface Supplier {
   knowledgeBaseText: string;
   geminiVoiceName: string;
   // NEW: ElevenLabs specific properties
-  elevenLabsVoiceId?: string;
+  elevenLabsAgentId?: string;
   useElevenLabs?: boolean;
   // Legacy property for backward compatibility
   hedra_avatar_id?: string;

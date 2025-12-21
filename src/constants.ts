@@ -29,7 +29,7 @@ export const SEED_SUPPLIERS: Supplier[] = [
     knowledgeBaseText: '',
     geminiVoiceName: 'Charon',
     // NEW: ElevenLabs configuration
-    elevenLabsVoiceId: 'agent_4301kcfn2ygeeh393v1mv46v40s0',
+    elevenLabsAgentId: 'agent_4301kcfn2ygeeh393v1mv46v40s0',
     useElevenLabs: true,
   },
   {
